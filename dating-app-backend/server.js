@@ -20,8 +20,8 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello People");
 });
 
-app.post("/dating/card", storePostController);
-app.get("/dating/cards");
+app.post("/dating/cards", storePostController);
+app.get("/dating/cards", getPostController);
 
 //listener
 app.listen(process.env.PORT, () => {

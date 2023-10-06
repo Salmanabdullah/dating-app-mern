@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatingCard from "react-tinder-card";
 import "./DatingCards.css";
+import axios from "./axios";
 
 const DatingCards = () => {
   const [people, setPeople] = useState([
@@ -26,6 +27,14 @@ const DatingCards = () => {
     },
   ]);
   
+  useEffect(() => {
+    async function fetchData() {
+      const req = await axios.get("/dating/cards");
+      setPeople(req.data);
+    }
+    fetchData();
+  }, []);
+
   const swiped = (direction, nameToDelete) => {
     console.log("receiving " + nameToDelete);
   };
