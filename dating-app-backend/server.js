@@ -2,8 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const app = express();
+const Cors = require("cors");
+const storePostController = require("./Controllers/storePost");
+const getPostController = require("./Controllers/getPost");
 
 //Middlewares
+app.use(express.json());
+app.use(Cors());
 
 //DB config
 mongoose
@@ -14,6 +19,9 @@ mongoose
 app.get("/", (req, res) => {
   res.status(200).send("Hello People");
 });
+
+app.post("/dating/card", storePostController);
+app.get("/dating/cards");
 
 //listener
 app.listen(process.env.PORT, () => {
